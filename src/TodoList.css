@@ -260,3 +260,16 @@ button.deleteAll:disabled {
         transition-duration: 0.01ms !important;
     }
 }
+
+.item-check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  flex: 1;
+}
+
+.item.concluida span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
