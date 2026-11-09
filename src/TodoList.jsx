@@ -4,7 +4,7 @@ import Icone from './assets/icon.webp';
 import { useTasks } from './hooks/useTasks';
 
 function TodoList() {
-  const { lista, adicionar, remover, removerTodas } = useTasks();
+  const { lista, adicionar, alternarConclusao, remover, removerTodas } = useTasks();
   const [novoItem, setNovoItem] = useState('');
 
   function handleSubmit(form) {
@@ -46,8 +46,15 @@ function TodoList() {
           </div>
         ) : (
           lista.map((item) => (
-            <div className="item" key={item.id}>
-              <span>{item.text}</span>
+            <div className={`item${item.iscompleted ? ' concluida' : ''}`} key={item.id}>
+              <label className="item-check">
+                <input
+                  type="checkbox"
+                  checked={item.iscompleted}
+                  onChange={() => alternarConclusao(item.id)}
+                />
+                <span>{item.text}</span>
+              </label>
               <button className="del" type="button" onClick={() => remover(item.id)}>Deletar</button>
             </div>
           ))

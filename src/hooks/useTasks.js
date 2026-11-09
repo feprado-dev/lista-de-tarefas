@@ -15,11 +15,17 @@ export function useTasks() {
     return true;
   }, []);
 
+  const alternarConclusao = useCallback((id) => {
+    setLista((tarefas) =>
+      tarefas.map((item) => (item.id === id ? { ...item, iscompleted: !item.iscompleted } : item)),
+    );
+  }, []);
+
   const remover = useCallback((id) => {
     setLista((tarefas) => tarefas.filter((item) => item.id !== id));
   }, []);
 
   const removerTodas = useCallback(() => setLista([]), []);
 
-  return { lista, adicionar, remover, removerTodas };
+  return { lista, adicionar, alternarConclusao, remover, removerTodas };
 }
